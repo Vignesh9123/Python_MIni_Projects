@@ -34,9 +34,14 @@ while play_again:
          if user_runs != comp_bowl:
             user_total = user_total + user_runs
             print("Your runs : " + str(user_total))
+            if user_total == 50:
+                print("Hoohoo! Half Century..")
+            elif user_total == 100:
+                print("Wow..! A Century..")
          else:
             print("You are OUT!!")
             print("Your Total : " + str(user_total))
+            print('Computer should hit ' + str(user_total + 1) + ' runs to win')
             user_out = True
             while user_out and not comp_won and not user_won :
                 time.sleep(1)
@@ -86,7 +91,7 @@ while play_again:
                 comp_total = comp_total + comp_runs
                 print('Computer runs : ' + str(comp_total) )
             else:
-                time.sleep(0.5)
+
                 print('Computer is OUT!!')
                 print("Computer total : " + str(comp_total))
                 comp_out = True
@@ -98,10 +103,16 @@ while play_again:
                      user_runs = int(input())
                      print(str(user_runs) + ' VS..' , end='')
                      comp_bowl = random.randint(1, 6)
+                     time.sleep(0.5)
                      print(comp_bowl)
                      if user_runs != comp_bowl:
                        user_total = user_runs + user_total
                        print('Your runs : ' + str(user_total))
+                       if user_total == 50:
+                           print("Hoohoo! Half Century..")
+                       elif user_total == 100:
+                           print("Wow..! A Century..")
+
                      elif user_runs == comp_bowl:
                         print("You are OUT!\n Your Total :" + str(user_total))
                         user_out = True
@@ -153,6 +164,8 @@ while play_again:
         user_won = False
         comp_won = False
     elif again == "No" or again =='no':
+
+        print('Wins : ' + str(wins), 'Losses : ' + str(losses), 'Ties : ' + str(ties), sep=' | ')
         print("Thank you for playing")
         sys.exit()
 
