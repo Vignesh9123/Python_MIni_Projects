@@ -164,9 +164,9 @@ while play_again:
         user_won = False
         comp_won = False
     elif again == "No" or again =='no':
-
         print('Wins : ' + str(wins), 'Losses : ' + str(losses), 'Ties : ' + str(ties), sep=' | ')
         print("Thank you for playing")
+
         sys.exit()
 
 
