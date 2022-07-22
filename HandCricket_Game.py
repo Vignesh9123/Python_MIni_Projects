@@ -175,6 +175,7 @@ while play_again:
                        #  break
     if choice == 'q' :
         print("You chose to quit")
+        time.sleep(2)
         sys.exit()
 
 
@@ -194,6 +195,7 @@ while play_again:
     elif again == "No" or again =='no':
         print('Wins : ' + str(wins), 'Losses : ' + str(losses), 'Ties : ' + str(ties), sep=' | ')
         print("Thank you for playing")
+        time.sleep(5)
         sys.exit()
 
 
