@@ -26,84 +26,94 @@ while play_again:
     if choice == 'b':
         print("You chose to bat\nNow HIT!")
         while not user_out:
-         try:
-            user_runs = int(input())
-         except :
-               print("Enter only numbers from 1 to 6 ")
-               user_runs = int(input())
-         if user_runs > 6 :
-             print("Enter only numbers from 1 to 6")
-             user_runs = int(input())
-         print(str(user_runs) + " VS.." , end='')
-         comp_bowl = random.randint(1, 6)
-         time.sleep(0.5)
-         print(comp_bowl)
-         if user_runs != comp_bowl:
-            user_total = user_total + user_runs
-            print("Your runs : " + str(user_total))
-            if user_total == 50:
-                print("Hoohoo! Half Century..")
-            elif user_total == 100:
-                print("Wow..! A Century..")
-         else:
-            print("You are OUT!!")
-            print("Your Total : " + str(user_total))
-            print('Computer should hit ' + str(user_total + 1) + ' runs to win')
-            user_out = True
-            while user_out and not comp_won and not user_won :
-                time.sleep(1)
-                print("Now you BOWL!!\n Start")
-                while not comp_out:
+             while True:
                  try:
-                        user_bowl = int(input())
-                 except:
-                        print("Enter only numbers from 1 to 6 ")
-                        user_bowl = int(input())
-                 if user_bowl > 6:
+                    user_runs = int(input())
+                    if user_runs > 6:
                         print("Enter only numbers from 1 to 6")
-                        user_bowl = int(input())
-                 print(str(user_bowl) + ' VS..', end=' ')
-                 comp_runs = random.randint(1, 6)
-                 time.sleep(0.5)
-                 print(comp_runs)
+                        continue
+                    else:
+                        break
+                 except:
+                       print("Enter only numbers from 1 to 6 ")
+                       continue
+             print(str(user_runs) + " VS.." , end='')
+             comp_bowl = random.randint(1, 6)
+             time.sleep(0.5)
+             print(comp_bowl)
+             if user_runs != comp_bowl:
+                user_total = user_total + user_runs
+                print("Your runs : " + str(user_total))
+                if user_total == 50:
+                    print("Hoohoo! Half Century..")
+                elif user_total == 100:
+                    print("Wow..! A Century..")
+             else:
+                print("You are OUT!!")
+                print("Your Total : " + str(user_total))
+                print('Computer should hit ' + str(user_total + 1) + ' runs to win')
+                user_out = True
+                while user_out and not comp_won and not user_won :
+                    time.sleep(1)
+                    print("Now you BOWL!!\n Start")
+                    while not comp_out:
+                     while True:
+                          try:
+                            user_bowl = int(input())
+                            if user_bowl > 6:
+                                print("Enter only numbers from 1 to 6")
+                                continue
+                            else:
+                                break
+                          except:
+                            print("Enter only numbers from 1 to 6 ")
+                            continue
 
-                 if comp_runs != user_bowl:
-                    comp_total = comp_total + comp_runs
-                    print("Computer runs : " + str(comp_total))
+                     print(str(user_bowl) + ' VS..', end=' ')
+                     comp_runs = random.randint(1, 6)
+                     time.sleep(0.5)
+                     print(comp_runs)
 
-                 if comp_total > user_total:
-                    print("Computer Total : " + str(comp_total))
-                    print("Computer WON!!")
-                    comp_won = True
-                    losses += 1
-                    break
+                     if comp_runs != user_bowl:
+                        comp_total = comp_total + comp_runs
+                        print("Computer runs : " + str(comp_total))
 
-                 elif comp_runs == user_bowl:
-                    print("Computer is OUT!")
-                    print("Computer total : " + str(comp_total))
-                    comp_out = True
+                     if comp_total > user_total:
+                        print("Computer Total : " + str(comp_total))
+                        print("Computer WON!!")
+                        comp_won = True
+                        losses += 1
+                        break
 
-                    if comp_out:
-                     print("You WON by " + str(user_total - comp_total ) + " runs")
-                     wins +=1
-                     user_won = True
-                     break
+                     elif comp_runs == user_bowl:
+                        print("Computer is OUT!")
+                        print("Computer total : " + str(comp_total))
+                        comp_out = True
 
-                 elif comp_total == user_total and user_won == True :
-                     print("It is a tie!")
-                     ties += 1
+                        if comp_out:
+                         print("You WON by " + str(user_total - comp_total ) + " runs")
+                         wins +=1
+                         user_won = True
+                         break
+
+                     elif comp_total == user_total and user_won == True :
+                         print("It is a tie!")
+                         ties += 1
 
     if choice == 'f':
         print("You Chose to bowl\nNow Start")
         while not comp_out and not user_out:
-            try:
-                user_bowl = int(input())
-            except:
-                print("Enter only numbers from 1 to 6 ")
-                user_bowl = int(input())
-            if user_bowl > 6:
-                print("Enter only numbers from 1 to 6")
-                user_bowl = int(input())
+            while True:
+                try:
+                  user_bowl = int(input())
+                  if user_bowl > 6:
+                    print("Enter only numbers from 1 to 6")
+                    continue
+                  else:
+                    break
+                except:
+                    print("Enter only numbers from 1 to 6 ")
+                    continue
             print(str(user_bowl) + ' VS.. ', end=' ')
             comp_runs = random.randint(1, 6)
             time.sleep(0.5)
@@ -121,14 +131,19 @@ while play_again:
                     print("Now you should hit " + str(comp_total + 1) + ' runs to WIN\n Start')
                     while not user_out:
                      comp_out = False
-                     try:
+                     while True:
+                      try:
                          user_runs = int(input())
-                     except:
+                         if user_runs > 6:
+                            print("Enter only numbers from 1 to 6")
+                            continue
+                         else:
+                             break
+                      except:
                          print("Enter only numbers from 1 to 6 ")
-                         user_runs = int(input())
-                     if user_runs > 6:
-                         print("Enter only numbers from 1 to 6")
-                         user_runs = int(input())
+                         continue
+
+
                      print(str(user_runs) + ' VS..' , end='')
                      comp_bowl = random.randint(1, 6)
                      time.sleep(0.5)
