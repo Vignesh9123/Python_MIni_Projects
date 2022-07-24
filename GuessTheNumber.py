@@ -1,5 +1,4 @@
 import random                #importing 'random' module
-#tdujtjksrxg
 secret_number = random.randint(1 , 19)
 print("I am thinking a number between 1 and 19")
 
