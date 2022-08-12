@@ -44,7 +44,7 @@ while not user_access and user_limit < 3:
         print("Access granted :)")
         time.sleep(2)
         user_access = True
-    else :
+    else:
         user_access = False
         while not user_access:
             otp_limit += 1
@@ -69,7 +69,7 @@ while not user_access and user_limit < 3:
                     print("Thank You")
                     time.sleep(2)
                     sys.exit()
-            else :
+            else:
                 continue
 
 

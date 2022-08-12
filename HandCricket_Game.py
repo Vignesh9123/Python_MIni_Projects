@@ -30,12 +30,12 @@ while play_again:
                  try:
                     user_runs = int(input())
                     if user_runs > 6:
-                        print("Enter only numbers from 1 to 6")
+                        print("Enter only numbers from 0 to 6")
                         continue
                     else:
                         break
                  except:
-                       print("Enter only numbers from 1 to 6 ")
+                       print("Enter only numbers from 0 to 6 ")
                        continue
              print(str(user_runs) + " VS.." , end='')
              comp_bowl = random.randint(1, 6)
@@ -61,12 +61,12 @@ while play_again:
                           try:
                             user_bowl = int(input())
                             if user_bowl > 6:
-                                print("Enter only numbers from 1 to 6")
+                                print("Enter only numbers from 0 to 6")
                                 continue
                             else:
                                 break
                           except:
-                            print("Enter only numbers from 1 to 6 ")
+                            print("Enter only numbers from 0 to 6 ")
                             continue
 
                      print(str(user_bowl) + ' VS..', end=' ')
@@ -107,12 +107,12 @@ while play_again:
                 try:
                   user_bowl = int(input())
                   if user_bowl > 6:
-                    print("Enter only numbers from 1 to 6")
+                    print("Enter only numbers from 0 to 6")
                     continue
                   else:
                     break
                 except:
-                    print("Enter only numbers from 1 to 6 ")
+                    print("Enter only numbers from 0 to 6 ")
                     continue
             print(str(user_bowl) + ' VS.. ', end=' ')
             comp_runs = random.randint(1, 6)
@@ -135,12 +135,12 @@ while play_again:
                       try:
                          user_runs = int(input())
                          if user_runs > 6:
-                            print("Enter only numbers from 1 to 6")
+                            print("Enter only numbers from 0 to 6")
                             continue
                          else:
                              break
                       except:
-                         print("Enter only numbers from 1 to 6 ")
+                         print("Enter only numbers from 0 to 6 ")
                          continue
 
 
