@@ -1,235 +1,182 @@
-import random, time, sys
-
-play_again = True
-
-user_total = 0
-comp_total = 0
-
-target = 0
-
-user_out = False
-comp_out = False
-
-user_won = False
-comp_won = False
-
+import random, time
 wins = 0
-losses = 0
+lost = 0
 ties = 0
 
-while play_again:
-    print("Hand Cricket!!")
-    print('Wins : ' + str(wins), 'Losses : ' + str(losses) , 'Ties : ' +str(ties) , sep=' | ')
-    print(' Press b for batting first and f for bowling first and q to Quit the game')
-    choice = input()
-    play_again = False
-    if choice == 'b':
-        print("You chose to bat\nNow HIT!")
-        while not user_out:
-             while True:
-                 try:
-                    user_runs = int(input())
-                    if user_runs > 6:
-                        print("Enter only numbers from 0 to 6")
-                        continue
-                    else:
-                        break
-                 except:
-                       print("Enter only numbers from 0 to 6 ")
-                       continue
-             print(str(user_runs) + " VS.." , end='')
-             comp_bowl = random.randint(1, 6)
-             time.sleep(0.5)
-             print(comp_bowl)
-             if user_runs != comp_bowl:
-                user_total = user_total + user_runs
-                print("Your runs : " + str(user_total))
-                if user_total == 50:
-                    print("Hoohoo! Half Century..")
-                elif user_total == 100:
-                    print("Wow..! A Century..")
-             else:
-                print("You are OUT!!")
-                print("Your Total : " + str(user_total))
-                print('Computer should hit ' + str(user_total + 1) + ' runs to win')
-                user_out = True
-                while user_out and not comp_won and not user_won :
-                    time.sleep(1)
-                    print("Now you BOWL!!\n Start")
-                    while not comp_out:
-                     while True:
-                          try:
-                            user_bowl = int(input())
-                            if user_bowl > 6:
-                                print("Enter only numbers from 0 to 6")
-                                continue
-                            else:
-                                break
-                          except:
-                            print("Enter only numbers from 0 to 6 ")
-                            continue
 
-                     print(str(user_bowl) + ' VS..', end=' ')
-                     comp_runs = random.randint(1, 6)
-                     time.sleep(0.5)
-                     print(comp_runs)
-
-                     if comp_runs != user_bowl:
-                        comp_total = comp_total + comp_runs
-                        print("Computer runs : " + str(comp_total))
-
-                     if comp_total > user_total:
-                        print("Computer Total : " + str(comp_total))
-                        print("Computer WON!!")
-                        comp_won = True
-                        losses += 1
-                        break
-
-                     elif comp_runs == user_bowl:
-                        print("Computer is OUT!")
-                        print("Computer total : " + str(comp_total))
-                        comp_out = True
-
-                        if comp_out:
-                         print("You WON by " + str(user_total - comp_total ) + " runs")
-                         wins +=1
-                         user_won = True
-                         break
-
-                     elif comp_total == user_total and user_won == True :
-                         print("It is a tie!")
-                         ties += 1
-
-    if choice == 'f':
-        print("You Chose to bowl\nNow Start")
-        while not comp_out and not user_out:
-            while True:
-                try:
-                  user_bowl = int(input())
-                  if user_bowl > 6:
-                    print("Enter only numbers from 0 to 6")
+def main(wins, lost, ties):
+    score = 0
+    def scnd_bat(target, score, wins, lost, ties): #Function for second innnings if player bats
+        print("\nSTART Batting")
+        while(score <= target):
+            try:
+                user_runs = int(input("Enter a number(1-6): "))
+                if(user_runs > 6):
+                    print("Invalid Entry!!!")
                     continue
-                  else:
-                    break
-                except:
-                    print("Enter only numbers from 0 to 6 ")
-                    continue
-            print(str(user_bowl) + ' VS.. ', end=' ')
-            comp_runs = random.randint(1, 6)
+            except ValueError:
+                print("Invalid Entry!!!")
+                continue
+            comp_runs = random.randint(1,6)
             time.sleep(0.5)
-            print(comp_runs)
-            if comp_runs != user_bowl:
-                comp_total = comp_total + comp_runs
-                print('Computer runs : ' + str(comp_total) )
+            print("\nUser hits: " + str(user_runs))
+            print("Computer puts: " + str(comp_runs))
+            if(user_runs == comp_runs):
+                print("\nYou are OUT!!!")
+                print("Your Total score = " + str(score))
+                if(score != target):
+                    print("\nYou LOST and Computer WINS by " + str((target - score)) + " runs!!!")
+                    lost += 1
+                break
             else:
+                score += user_runs
+                print("Score = " + str(score))
+        if score > target:
+            print("\nYour Total score = " + str(score))
+            print("\nYou WON!!!")
+            wins += 1
+        if score == target:
+            print("\nThe Match is DRAWN!!!")
+            ties += 1
+        play_againfunc()
 
-                print('Computer is OUT!!')
-                print("Computer total : " + str(comp_total))
-                comp_out = True
-                if comp_out and not user_out:
-                    time.sleep(0.5)
-                    print("Now you should hit " + str(comp_total + 1) + ' runs to WIN\n Start')
-                    while not user_out:
-                     comp_out = False
-                     while True:
-                      try:
-                         user_runs = int(input())
-                         if user_runs > 6:
-                            print("Enter only numbers from 0 to 6")
-                            continue
-                         else:
-                             break
-                      except:
-                         print("Enter only numbers from 0 to 6 ")
-                         continue
-
-
-                     print(str(user_runs) + ' VS..' , end='')
-                     comp_bowl = random.randint(1, 6)
-                     time.sleep(0.5)
-                     print(comp_bowl)
-                     if user_runs != comp_bowl:
-                       user_total = user_runs + user_total
-                       print('Your runs : ' + str(user_total))
-                       if user_total == 50:
-                           print("Hoohoo! Half Century..")
-                       elif user_total == 100:
-                           print("Wow..! A Century..")
-
-                     elif user_runs == comp_bowl:
-                        print("You are OUT!\n Your Total :" + str(user_total))
-                        user_out = True
-                        comp_out = True
-                        if comp_total > user_total:
-                           time.sleep(0.5)
-                           print('Computer WON by ' + str(comp_total - user_total) + ' runs')
-                           comp_won = True
-                           losses += 1
-                           break
-
-                        elif comp_total == user_total:
-                          print("It is a tie")
-                          comp_out = False
-                          user_out = True
-                          ties += 1
-                          break
-
-                     if user_total > comp_total:
-                         time.sleep(0.5)
-                         print("You WON!!")
-                         comp_out = False
-                         user_out = True
-                         user_won = True
-                         wins += 1
-                         break
-                    # if user_total == comp_total and user_out:
-                        # print("It is a tie")
-                         #comp_out = False
-                        # user_out = True
-                        # ties += 1
-                       #  break
-    if choice == 'q' :
-        print("You chose to quit")
-        time.sleep(2)
-        sys.exit()
+    def scnd_bowl(target, score, wins, lost, ties): # Function for second innnings if player bowls
+        print("\nSTART Bowling")
+        while(score <= target):
+            try:
+                user_runs = int(input("Enter a number(1-6): "))
+                if(user_runs > 6):
+                    print("Invalid Entry!!!")
+                    continue
+            except ValueError:
+                print("Invalid Entry!!!")
+                continue
+            comp_runs = random.randint(1,6)
+            time.sleep(0.5)
+            print("\nUser puts: " + str(user_runs))
+            print("Computer hits: " + str(comp_runs))
+            if(user_runs == comp_runs):
+                print("\nComputer is OUT!!!")
+                print("Computer total score = "+ str(score))
+                print("\nYou WON by " + str((target - score)) + " runs!!!")
+                wins += 1
+                break
+            else:
+                score += comp_runs
+                print("Score = " + str(score))
+        if score > target:
+            print("\nComputer total score = "+ str(score))
+            print("\nYou LOST and Computer WON!!!")
+            lost += 1
+        if score == target:
+            print("\nThe Match is DRAWN!!!")
+            ties += 1
+        play_againfunc()
+    
+    def play_againfunc(): # Function to ask the player if they want to play again 
+        play_again = input("\nDo you want to play again?(Enter Y for Yes and N for No): ")
+        if(play_again.lower() == 'y' or play_again.lower() == 'yes'):
+            main(wins, lost, ties)
+        elif(play_again.lower() == 'n' or play_again.lower() == 'no'):
+            print("Thank You, See you again!!!")
+            time.sleep(1)
+        else:
+            print("Invalid Entry")
+            play_againfunc()
 
 
+    """ FUNCTION FOR BATTING in 1st INNINGS """
+    def fst_bat(score):
+        print("\nSTART Batting")
+        while(1):
+            try:
+                user_runs = int(input("Enter a number(1-6): "))
+                if(user_runs > 6):
+                    print("Invalid Entry!!!")
+                    continue
+            except ValueError:
+                print("Invalid Entry!!!")
+                continue
+            comp_runs = random.randint(1,6)
+            time.sleep(0.5)
+            print("\nUser hits: " + str(user_runs))
+            print("Computer puts: " + str(comp_runs))
+            if(user_runs == comp_runs):
+                print("\nYou are OUT!!!")
+                break
+            else:
+                score += user_runs
+                print("Score = " + str(score))
+        print("\nYour Total score = " + str(score))
+        print("\nComputer needs "+ str(score + 1)+ " runs to win!!! ")
+        scnd_bowl(score, 0, wins, lost, ties)
 
+    """ FUNCTION FOR BOWLING in 1st INNINGS"""
+    def fst_bowl(score):
+        print("\nSTART Bowling")
+        while(1):
+            try:
+                user_runs = int(input("Enter a number(1-6): "))
+                if(user_runs > 6):
+                    print("Invalid Entry!!!")
+                    continue
+            except ValueError:
+                print("Invalid Entry!!!")
+                continue
+            comp_runs = random.randint(1,6)
+            time.sleep(0.5)
+            print("\nUser puts: " + str(user_runs))
+            print("Computer hits: " + str(comp_runs))
+            if(user_runs == comp_runs):
+                print("\nComputer is OUT!!!")
+                break
+            else:
+                score += user_runs
+                print("Score = " + str(score))
+        print("\nComputer's Total score = " + str(score))
+        print("\nYou need "+ str(score + 1)+ " runs to win!!! ")
+        scnd_bat(score,0, wins, lost, ties)
 
-    again = input("Do You Wish To Play Again ? \n")
-    if again == "Yes" or again == 'yes':
-        play_again = True
-        user_out = False
-        comp_out = False
-        user_total = 0
-        comp_total = 0
-        user_runs = 0
-        comp_runs = 0
-        user_won = False
-        comp_won = False
-    elif again == "No" or again =='no':
-        print('Wins : ' + str(wins), 'Losses : ' + str(losses), 'Ties : ' + str(ties), sep=' | ')
-        print("Thank you for playing")
-        time.sleep(5)
-        sys.exit()
+    """ FUNCTION FOR USER's BATTING OR FIELDING CHOICE"""
+    def brfchoice():
+            choice = input("Enter B for batting or F for Bowling: ")
+            if(choice.lower() == "b"):
+                print("\nYou Chose Batting")
+                fst_bat(score)
+            elif(choice.lower() == "f"):
+                print("\nYou Chose Bowling")
+                fst_bowl(score)
+            else:
+                print("\nInvalid choice!!!")
+                brfchoice() 
+                
+    def toss(): # Functionn for TOSS
+        user_toss = input("\nEnter H for heads and T for tails: ")
+        if(user_toss.lower() == 'h'):
+            user_toss = 1
+        elif(user_toss.lower() == 't'):
+            user_toss = 2
+        else:
+            print("\nInvalid choice!!!")
+            toss()
+        return user_toss
 
+    print("Welcome to the Handcricket game!!!Wins: ",wins," Lost: ", lost, " Ties: ", ties, "\nLet's go for the TOSS>>>")
+    
+    user_toss = toss()
+    comp_toss = random.randint(1,2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    time.sleep(0.5)
+    if(user_toss == comp_toss):
+        print("\nYou WON the Toss")
+        brfchoice()  
+    else:
+        print("\nYou lost the toss")
+        comp_brf = random.randint(1,2)
+        if(comp_brf == 1):
+            print("\nComputer WON the toss and Chose to BAT")
+            fst_bowl(score)
+        else:
+            print("\nComputer WON the toss and Chose to Bowl")
+            fst_bat(score)
+main(wins, lost, ties)
